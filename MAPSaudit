@@ -353,7 +353,7 @@ cd "C:\CDRC\walkability"
 	set more off
 	describe
 
-** DO-FILE SECTION 02 (cleaning the dataset) **
+** DO-FILE SECTION 02 (data prep) **
 
 // Changing the time variables form string to numeric //
 
@@ -367,6 +367,142 @@ cd "C:\CDRC\walkability"
 	format time_diff %tcHH:MM
 
 	label var time_diff "Time difference (Start and End)”
+	
+
+// Renaming and recoding variables for ease of analysis of the MAPS Survey //
+
+*ROUTE
+
+// Route and Land Use Section 
+
+	rename land1 LU1
+	rename land2___1 LU3a
+	rename land2___2 LU3b
+	rename land2___3 LU3c
+	rename land2___4 LU3d
+	rename land2___5 LU3e
+	rename land3* LU6*
+	rename land4___1 LU7a
+	rename land4___2 LU7b
+	rename land4___3 LU7c
+
+
+// Streetscape Section
+
+	rename street1 SS1a
+	rename street2a SS2_1a
+	rename street2b___1 SS2_1b
+	rename street2b___2 SS2_1c
+	rename street3___1 SS4a
+	rename street3___2 SS4b
+	*Note multiply street3a* SS4a and street3b*SS4b
+	replace SS4a = SS4a*street3a
+	replace SS4b = SS4b*street3b
+	rename street4 SS5
+	rename street5 SS6
+	rename street6___1 SS7a
+	rename street6___2 SS7b
+	rename street6___3 SS7c
+	rename street6___4 SS7d
+	rename street7 SS8
+	rename street8 SS9a
+	rename street8a SS9b
+	rename street8b SS9c
+
+
+//Aesthetics and Social Section
+
+	rename aesthetics1 A1
+	rename aesthetics2 A2
+	rename aesthetics3 A4
+	rename aesthetics4 A5
+	rename aesthetics5 A6a
+	rename aesthetics6 A7
+	rename aesthetics7 A10
+
+********************************************************************************
+
+*Segments
+
+	rename segment1 S1_1
+	rename segment2 S1_2
+	rename segment3a S1_3a
+	rename segment3b S1_3b
+	*Note S1_3b (How wide is the majority of the buffer)
+	rename segment4___0 S1_4a
+	rename segment4___1 S1_4b
+	rename segment4___2 S1_4c
+	rename segment4___3 S1_4d
+	rename segment4___4 S1_4e
+	rename segment5 S1_5b
+	rename segment6 S1_5c
+	rename segment7 S1_10
+	rename segment8 S1_14
+	rename segment9a S1_17a
+	rename segment9b S1_17b
+	rename segment10 S1_23
+	rename segment11 S1_24
+	rename segment12 S1_25
+	rename segment13 S1_26
+	rename segment14 S1_27
+	rename segment15 S1_28
+
+********************************************************************************
+
+*Crossings
+
+	rename crossings1 C1_1d
+	rename crossings2___1 C1_3b
+	rename crossings2___2 C1_3c
+	rename crossings2___3 C1_3d
+	rename crossings3a C1_5a
+	rename crossings3b C1_5b
+	rename crossings4 C1_7c
+	rename crossings5___1 C1_8a
+	rename crossings5___2 C1_8b
+	rename crossings5___3 C1_8c
+	rename crossings6 C1_11e
+
+********************************************************************************
+
+
+*Labelling time variables
+
+	label var time_start "Route Start Time"
+	label var time_end "Route End Time"
+
+********************************************************************************
+//Residential Density Subscale
+
+	gen ResMix = .
+	replace ResMix = 4 if LU3a==1
+	replace ResMix = 1 if LU3d==1
+	replace ResMix = 2 if LU3c==1
+	replace ResMix = 3 if LU3b==1
+	replace ResMix = 0 if LU3e==1
+	label var ResMix "Residential Mix"
+	label define ResMix 0"None" 1"Apartment over retail only" 2"Apartments or multifamily only" 3"Mixed or other" 4"Single family only"
+	label value ResMix ResMix
+
+	gen Res_Density_Mix_recode= .
+	replace Res_Density_Mix_recode = 0 if type==2
+	replace Res_Density_Mix_recode = 1 if LU3a==1
+	replace Res_Density_Mix_recode = 2 if LU3b==1 | LU3c==1
+	replace Res_Density_Mix_recode = 3 if LU3d==1
+	label var Res_Density_Mix_recode "Residential density mix recoded (points)"
+	label define Res_Density_Mix_recode 0"Commercial" 1"Single Family" 2"Multi-Family only and any other mix" 3"Apartments over retail only"
+	label value Res_Density_Mix_recode Res_Density_Mix_recode
+
+
+//Shops Subscale
+	gen Shops = LU6d + LU6e + LU6h + LU6g + LU6i  + LU6n
+	label var Shops "Shops Subscale Score"
+
+*Consider the following: Grocery/Supermarket, Convience Store, Bakery, Age-restricted bar, rum shop, Other retial
+
+//Restaurant and Entertainment Subscale
+	gen Restaur_Ent = LU6a + LU6b + LU6c + LU6f + LU6h
+	label var Restaur_Ent "Restaurant and Entertainment Subscale"
 
 
 
