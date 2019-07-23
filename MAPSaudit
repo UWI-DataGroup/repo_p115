@@ -13,7 +13,7 @@ cd "C:\CDRC\walkability"
 
 ** DO-FILE SECTION 00 **
 ** DO-FILE SET UP COMMANDS **
-	version 13
+	version 15
 	clear all
 
 ** DO-FILE SECTION 01 (importing the data)
