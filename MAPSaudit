@@ -17,9 +17,10 @@ cd "C:\CDRC\walkability"
 	clear all
 
 ** DO-FILE SECTION 01 (importing the data)
-	import delimited record_id redcap_repeat_instrument redcap_repeat_instance routeid auditorid type side crossstreet_s crossstreet_e starttime endtime mapsadmin_variables_complete land1 land2___1 land2___2 land2___3 land2___4 land2___5 land3a land3b land3c land3d land3e land3f land3g land3h land3i land3j land3k land3l land3m land3n land3o land3p land3q land3r land3s land3t land3u land3v land3w land3x land3y land3z land4___1 land4___2 land4___3 land4___4 street1 street2a street2b___1 street2b___2 street2b___3 street3___1 street3___2 street3___3 street3a street3b street4 street5 street6___0 street6___1 street6___2 street6___3 street6___4 street7 street8 street8a street8b aesthetics1 aesthetics2 aesthetics3 aesthetics4 aesthetics5 aesthetics6 aesthetics7 maps_route_complete type_segment segment1 segment2 segment3a segment3b segment4___0 segment4___1 segment4___2 segment4___3 segment4___4 segment5 segment6 segment7 segment8 segment9a segment9b segment10 segment11 segment12 segment13 segment14 segment15 maps_segment_complete intesection1 intersection2 streetfrom streetto crossings1 crossings2___1 crossings2___2 crossings2___3 crossings2___4 crossings3a crossings3b crossings4 crossings5___1 crossings5___2 crossings5___3 crossings5___4 crossings6 mapscrossings_complete using "MAPS_DATA_NOHDRS_2019-07-22_0729.csv", varnames(nonames)
+	import delimited record_id redcap_repeat_instrument redcap_repeat_instance routeid auditorid type side crossstreet_s crossstreet_e starttime endtime mapsadmin_variables_complete land1 land2___1 land2___2 land2___3 land2___4 land2___5 land3a land3b land3c land3d land3e land3f land3g land3h land3i land3j land3k land3l land3m land3n land3o land3p land3q land3r land3s land3t land3u land3v land3w land3x land3y land3z land4___1 land4___2 land4___3 land4___4 street1 street2a street2b___1 street2b___2 street2b___3 street3___1 street3___2 street3___3 street3a street3b street4 street5 street6___0 street6___1 street6___2 street6___3 street6___4 street7 street8 street8a street8b aesthetics1 aesthetics2 aesthetics3 aesthetics4 aesthetics5 aesthetics6 aesthetics7 maps_route_complete type_segment segment1 segment2 segment3a segment3b segment4___0 segment4___1 segment4___2 segment4___3 segment4___4 segment5 segment6 segment7 segment8 segment9a segment9b segment10 segment11 segment12 segment13 segment14 segment15 maps_segment_complete intesection1 intersection2 streetfrom streetto crossings1 crossings2___1 crossings2___2 crossings2___3 crossings2___4 crossings3a crossings3b crossings4 crossings5___1 crossings5___2 crossings5___3 crossings5___4 crossings6 mapscrossings_complete using "MAPS_DATA_NOHDRS_2019-07-24_0621.csv", varnames(nonames)
 
-	label data "MAPS_DATA_NOHDRS_2019-07-22_0729.csv"
+	label data "MAPS_DATA_NOHDRS_2019-07-24_0621.csv"
+
 
 	label define type_ 1 "Residential" 2 "Commercial" 3 "Mixed" 
 	label define side_ 1 "Left" 2 "Right" 
@@ -229,7 +230,6 @@ cd "C:\CDRC\walkability"
 	label values mapscrossings_complete mapscrossings_complete_
 
 
-
 	label variable record_id "Record ID"
 	label variable redcap_repeat_instrument "Repeat Instrument"
 	label variable redcap_repeat_instance "Repeat Instance"
@@ -352,6 +352,7 @@ cd "C:\CDRC\walkability"
 	order record_id redcap_repeat_instrument redcap_repeat_instance routeid auditorid type side crossstreet_s crossstreet_e starttime endtime mapsadmin_variables_complete land1 land2___1 land2___2 land2___3 land2___4 land2___5 land3a land3b land3c land3d land3e land3f land3g land3h land3i land3j land3k land3l land3m land3n land3o land3p land3q land3r land3s land3t land3u land3v land3w land3x land3y land3z land4___1 land4___2 land4___3 land4___4 street1 street2a street2b___1 street2b___2 street2b___3 street3___1 street3___2 street3___3 street3a street3b street4 street5 street6___0 street6___1 street6___2 street6___3 street6___4 street7 street8 street8a street8b aesthetics1 aesthetics2 aesthetics3 aesthetics4 aesthetics5 aesthetics6 aesthetics7 maps_route_complete type_segment segment1 segment2 segment3a segment3b segment4___0 segment4___1 segment4___2 segment4___3 segment4___4 segment5 segment6 segment7 segment8 segment9a segment9b segment10 segment11 segment12 segment13 segment14 segment15 maps_segment_complete intesection1 intersection2 streetfrom streetto crossings1 crossings2___1 crossings2___2 crossings2___3 crossings2___4 crossings3a crossings3b crossings4 crossings5___1 crossings5___2 crossings5___3 crossings5___4 crossings6 mapscrossings_complete 
 	set more off
 	describe
+
 
 ** DO-FILE SECTION 02 (data prep) **
 
