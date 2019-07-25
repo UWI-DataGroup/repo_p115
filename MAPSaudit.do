@@ -1,5 +1,5 @@
 ** CHANGE FOR RE-RUN ON NEW COMPUTER **
-cd "C:\CDRC\walkability"
+cd "C:\CDRC\walkability\repo_p115"
 
 ** CLOSE ANY OPEN LOG FILE AND OPEN NEW LOG FILE **
 	capture log close
