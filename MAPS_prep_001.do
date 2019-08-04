@@ -1,3 +1,4 @@
+<<<<<<< HEAD:MAPSaudit.do
 ** CLOSE ANY OPEN LOG FILE AND OPEN NEW LOG FILE **
 	capture log close
 
@@ -8,8 +9,29 @@
 // project: 		MAPS STREET AUDIT - PILOT STUDY
 // author: 		Kern Rocke, Christina Howitt, Ian Hambleton, Stephanie Whiteman
 // description: 	Initial data cleaning and analysis of the MAPS audit pilot study- containing 60 routes of the Bridgetown-Garrision UNESCO Herritage Sites.  
+=======
+** CLOSE ANY OPEN LOG FILE AND OPEN A NEW LOG FILE
+capture log close
+cd "/Users/kernrocke/Documents/Statistical Data Anlaysis/2019/Walkability/MAPS/Data"
+log using "Log files/Data Preparation/MAPS_prep_001", replace
 
 
+**  GENERAL DO-FILE COMMENTS
+**  program:		MAPS_prep_001.do
+**  project:      	Microscale Auidt of Pedestrian Streetscapes of UNESCO Hertiage Site Barbados
+**  author:			Rocke, Whiteman, Hambleton, Howitt
+**  task:          	Initial Data Cleaning 
+**	Date Modified:	25/07/2019
+>>>>>>> eaae189d9c17b63752a24814a2631d56cd6fd042:MAPS_prep_001.do
+
+** DO-FILE SET UP COMMANDS
+version 13
+clear all
+macro drop _all
+set more 1
+set linesize 200
+
+<<<<<<< HEAD:MAPSaudit.do
 	version 13
 	clear all
 
@@ -18,6 +40,13 @@
 
 	import delimited record_id redcap_repeat_instrument redcap_repeat_instance routeid auditorid type side crossstreet_s crossstreet_e starttime endtime mapsadmin_variables_complete land1 land2___1 land2___2 land2___3 land2___4 land2___5 land3a land3b land3c land3d land3e land3f land3g land3h land3i land3j land3k land3l land3m land3n land3o land3p land3q land3r land3s land3t land3u land3v land3w land3x land3y land3z land4___1 land4___2 land4___3 land4___4 street1 street2a street2b___1 street2b___2 street2b___3 street3___1 street3___2 street3___3 street3a street3b street4 street5 street6___0 street6___1 street6___2 street6___3 street6___4 street7 street8 street8a street8b aesthetics1 aesthetics2 aesthetics3 aesthetics4 aesthetics5 aesthetics6 aesthetics7 maps_route_complete type_segment segment1 segment2 segment3a segment3b segment4___0 segment4___1 segment4___2 segment4___3 segment4___4 segment5 segment6 segment7 segment8 segment9a segment9b segment10 segment11 segment12 segment13 segment14 segment15 maps_segment_complete intesection1 intersection2 streetfrom streetto crossings1 crossings2___1 crossings2___2 crossings2___3 crossings2___4 crossings3a crossings3b crossings4 crossings5___1 crossings5___2 crossings5___3 crossings5___4 crossings6 mapscrossings_complete using "MAPS_DATA_NOHDRS_2019-07-22_0729.csv", varnames(nonames)
 
+=======
+** DO-FILE SECTION 01 - Importing Data from RedCap
+
+
+	import delimited record_id redcap_repeat_instrument redcap_repeat_instance routeid auditorid type side crossstreet_s crossstreet_e starttime endtime mapsadmin_variables_complete land1 land2___1 land2___2 land2___3 land2___4 land2___5 land3a land3b land3c land3d land3e land3f land3g land3h land3i land3j land3k land3l land3m land3n land3o land3p land3q land3r land3s land3t land3u land3v land3w land3x land3y land3z land4___1 land4___2 land4___3 land4___4 street1 street2a street2b___1 street2b___2 street2b___3 street3___1 street3___2 street3___3 street3a street3b street4 street5 street6___0 street6___1 street6___2 street6___3 street6___4 street7 street8 street8a street8b aesthetics1 aesthetics2 aesthetics3 aesthetics4 aesthetics5 aesthetics6 aesthetics7 maps_route_complete type_segment segment1 segment2 segment3a segment3b segment4___0 segment4___1 segment4___2 segment4___3 segment4___4 segment5 segment6 segment7 segment8 segment9a segment9b segment10 segment11 segment12 segment13 segment14 segment15 maps_segment_complete intesection1 intersection2 streetfrom streetto crossings1 crossings2___1 crossings2___2 crossings2___3 crossings2___4 crossings3a crossings3b crossings4 crossings5___1 crossings5___2 crossings5___3 crossings5___4 crossings6 mapscrossings_complete using "MAPS_DATA_NOHDRS_2019-07-25_1148", varnames(nonames)
+
+>>>>>>> eaae189d9c17b63752a24814a2631d56cd6fd042:MAPS_prep_001.do
 	label data "MAPS_DATA_NOHDRS_2019-07-22_0729.csv"
 
 	label define type_ 1 "Residential" 2 "Commercial" 3 "Mixed" 
@@ -352,7 +381,11 @@
 	set more off
 	describe
 
+<<<<<<< HEAD:MAPSaudit.do
 ** DO-FILE SECTION 02 (cleaning the dataset) **
+=======
+** DO-FILE SECTION 02- Data Cleaning
+>>>>>>> eaae189d9c17b63752a24814a2631d56cd6fd042:MAPS_prep_001.do
 
 // Changing the time variables form string to numeric //
 
@@ -367,6 +400,7 @@
 
 	label var time_diff "Time difference (Start and End)Ó
 
+<<<<<<< HEAD:MAPSaudit.do
 
 
 
@@ -380,7 +414,118 @@
 
 
 
+=======
+*Note: Including the label maps route to the variable redcap_repeat_instrument
+
+replace redcap_repeat_instrument = "maps_route" if redcap_repeat_instrument==""
+encode redcap_repeat_instrument, gen(instrument_type)
+
+//Renaming variables to match MAPS scoring manual 
+
+*
+
+*ROUTE
+
+// Route and Land Use Section
+
+rename land1 LU1
+rename land2___1 LU3a
+rename land2___2 LU3b
+rename land2___3 LU3c
+rename land2___4 LU3d
+rename land2___5 LU3e
+rename land3* LU6*
+rename land4___1 LU7a
+rename land4___2 LU7b
+rename land4___3 LU7c
 
 
+// Streetscape Section
+
+rename street1 SS1a
+rename street2a SS2_1a
+rename street2b___1 SS2_1b
+rename street2b___2 SS2_1c
+rename street3___1 SS4a
+rename street3___2 SS4b
+*Note multiply street3a* SS4a and street3b*SS4b
+replace SS4a = SS4a*street3a
+replace SS4b = SS4b*street3b
+rename street4 SS5
+rename street5 SS6
+rename street6___1 SS7a
+rename street6___2 SS7b
+rename street6___3 SS7c
+rename street6___4 SS7d
+rename street7 SS8
+rename street8 SS9a
+rename street8a SS9b
+rename street8b SS9c
+
+
+//Aesthetics and Social Section
+
+rename aesthetics1 A1
+rename aesthetics2 A2
+rename aesthetics3 A4
+rename aesthetics4 A5
+rename aesthetics5 A6a
+rename aesthetics6 A7
+rename aesthetics7 A10
+
+********************************************************************************
+
+*Segments
+
+rename segment1 S1_1
+rename segment2 S1_2
+rename segment3a S1_3a
+rename segment3b S1_3b
+*Note S1_3b (How wide is the majority of the buffer)
+rename segment4___0 S1_4a
+rename segment4___1 S1_4b
+rename segment4___2 S1_4c
+rename segment4___3 S1_4d
+rename segment4___4 S1_4e
+rename segment5 S1_5b
+rename segment6 S1_5c
+rename segment7 S1_10
+rename segment8 S1_14
+rename segment9a S1_17a
+rename segment9b S1_17b
+rename segment10 S1_23
+rename segment11 S1_24
+rename segment12 S1_25
+rename segment13 S1_26
+rename segment14 S1_27
+rename segment15 S1_28
+
+********************************************************************************
+
+*Crossings
+
+rename crossings1 C1_1d
+rename crossings2___1 C1_3b
+rename crossings2___2 C1_3c
+rename crossings2___3 C1_3d
+rename crossings3a C1_5a
+rename crossings3b C1_5b
+rename crossings4 C1_7c
+rename crossings5___1 C1_8a
+rename crossings5___2 C1_8b
+rename crossings5___3 C1_8c
+rename crossings6 C1_11e
+
+********************************************************************************
+
+
+*Labelling time variables
+
+label var time_start "Route Start Time"
+label var time_end "Route End Time"
+>>>>>>> eaae189d9c17b63752a24814a2631d56cd6fd042:MAPS_prep_001.do
+
+
+save "MAPS_cleaned", replace
 
 log close
