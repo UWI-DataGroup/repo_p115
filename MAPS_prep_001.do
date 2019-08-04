@@ -1,15 +1,3 @@
-<<<<<<< HEAD:MAPSaudit.do
-** CLOSE ANY OPEN LOG FILE AND OPEN NEW LOG FILE **
-	capture log close
-
-		log using  "MAPSaudit.smcl", replace
-		
-** GENERAL DO-FILE COMMENTS **
-
-// project: 		MAPS STREET AUDIT - PILOT STUDY
-// author: 		Kern Rocke, Christina Howitt, Ian Hambleton, Stephanie Whiteman
-// description: 	Initial data cleaning and analysis of the MAPS audit pilot study- containing 60 routes of the Bridgetown-Garrision UNESCO Herritage Sites.  
-=======
 ** CLOSE ANY OPEN LOG FILE AND OPEN A NEW LOG FILE
 capture log close
 cd "/Users/kernrocke/Documents/Statistical Data Anlaysis/2019/Walkability/MAPS/Data"
@@ -22,7 +10,6 @@ log using "Log files/Data Preparation/MAPS_prep_001", replace
 **  author:			Rocke, Whiteman, Hambleton, Howitt
 **  task:          	Initial Data Cleaning 
 **	Date Modified:	25/07/2019
->>>>>>> eaae189d9c17b63752a24814a2631d56cd6fd042:MAPS_prep_001.do
 
 ** DO-FILE SET UP COMMANDS
 version 13
@@ -31,22 +18,11 @@ macro drop _all
 set more 1
 set linesize 200
 
-<<<<<<< HEAD:MAPSaudit.do
-	version 13
-	clear all
-
-** DO-FILE SECTION 01 (importing the data)
-
-
-	import delimited record_id redcap_repeat_instrument redcap_repeat_instance routeid auditorid type side crossstreet_s crossstreet_e starttime endtime mapsadmin_variables_complete land1 land2___1 land2___2 land2___3 land2___4 land2___5 land3a land3b land3c land3d land3e land3f land3g land3h land3i land3j land3k land3l land3m land3n land3o land3p land3q land3r land3s land3t land3u land3v land3w land3x land3y land3z land4___1 land4___2 land4___3 land4___4 street1 street2a street2b___1 street2b___2 street2b___3 street3___1 street3___2 street3___3 street3a street3b street4 street5 street6___0 street6___1 street6___2 street6___3 street6___4 street7 street8 street8a street8b aesthetics1 aesthetics2 aesthetics3 aesthetics4 aesthetics5 aesthetics6 aesthetics7 maps_route_complete type_segment segment1 segment2 segment3a segment3b segment4___0 segment4___1 segment4___2 segment4___3 segment4___4 segment5 segment6 segment7 segment8 segment9a segment9b segment10 segment11 segment12 segment13 segment14 segment15 maps_segment_complete intesection1 intersection2 streetfrom streetto crossings1 crossings2___1 crossings2___2 crossings2___3 crossings2___4 crossings3a crossings3b crossings4 crossings5___1 crossings5___2 crossings5___3 crossings5___4 crossings6 mapscrossings_complete using "MAPS_DATA_NOHDRS_2019-07-22_0729.csv", varnames(nonames)
-
-=======
 ** DO-FILE SECTION 01 - Importing Data from RedCap
 
 
 	import delimited record_id redcap_repeat_instrument redcap_repeat_instance routeid auditorid type side crossstreet_s crossstreet_e starttime endtime mapsadmin_variables_complete land1 land2___1 land2___2 land2___3 land2___4 land2___5 land3a land3b land3c land3d land3e land3f land3g land3h land3i land3j land3k land3l land3m land3n land3o land3p land3q land3r land3s land3t land3u land3v land3w land3x land3y land3z land4___1 land4___2 land4___3 land4___4 street1 street2a street2b___1 street2b___2 street2b___3 street3___1 street3___2 street3___3 street3a street3b street4 street5 street6___0 street6___1 street6___2 street6___3 street6___4 street7 street8 street8a street8b aesthetics1 aesthetics2 aesthetics3 aesthetics4 aesthetics5 aesthetics6 aesthetics7 maps_route_complete type_segment segment1 segment2 segment3a segment3b segment4___0 segment4___1 segment4___2 segment4___3 segment4___4 segment5 segment6 segment7 segment8 segment9a segment9b segment10 segment11 segment12 segment13 segment14 segment15 maps_segment_complete intesection1 intersection2 streetfrom streetto crossings1 crossings2___1 crossings2___2 crossings2___3 crossings2___4 crossings3a crossings3b crossings4 crossings5___1 crossings5___2 crossings5___3 crossings5___4 crossings6 mapscrossings_complete using "MAPS_DATA_NOHDRS_2019-07-25_1148", varnames(nonames)
 
->>>>>>> eaae189d9c17b63752a24814a2631d56cd6fd042:MAPS_prep_001.do
 	label data "MAPS_DATA_NOHDRS_2019-07-22_0729.csv"
 
 	label define type_ 1 "Residential" 2 "Commercial" 3 "Mixed" 
@@ -377,15 +353,56 @@ set linesize 200
 	label variable crossings6 "Is a curb extension present?"
 	label variable mapscrossings_complete "Complete?"
 
-	order record_id redcap_repeat_instrument redcap_repeat_instance routeid auditorid type side crossstreet_s crossstreet_e starttime endtime mapsadmin_variables_complete land1 land2___1 land2___2 land2___3 land2___4 land2___5 land3a land3b land3c land3d land3e land3f land3g land3h land3i land3j land3k land3l land3m land3n land3o land3p land3q land3r land3s land3t land3u land3v land3w land3x land3y land3z land4___1 land4___2 land4___3 land4___4 street1 street2a street2b___1 street2b___2 street2b___3 street3___1 street3___2 street3___3 street3a street3b street4 street5 street6___0 street6___1 street6___2 street6___3 street6___4 street7 street8 street8a street8b aesthetics1 aesthetics2 aesthetics3 aesthetics4 aesthetics5 aesthetics6 aesthetics7 maps_route_complete type_segment segment1 segment2 segment3a segment3b segment4___0 segment4___1 segment4___2 segment4___3 segment4___4 segment5 segment6 segment7 segment8 segment9a segment9b segment10 segment11 segment12 segment13 segment14 segment15 maps_segment_complete intesection1 intersection2 streetfrom streetto crossings1 crossings2___1 crossings2___2 crossings2___3 crossings2___4 crossings3a crossings3b crossings4 crossings5___1 crossings5___2 crossings5___3 crossings5___4 crossings6 mapscrossings_complete 
+	*Creating Crossing type variable 
+
+	gen type_crossing = type_segment
+	replace type_crossing = 1 if record_id==3 
+	replace type_crossing = 1 if record_id==4 
+	replace type_crossing = 1 if record_id==14 
+	replace type_crossing = 1 if record_id==16 
+	replace type_crossing = 1 if record_id==17 
+	replace type_crossing = 1 if record_id==18 
+	replace type_crossing = 1 if record_id==20 
+	replace type_crossing = 1 if record_id==21 
+	replace type_crossing = 1 if record_id==22 
+	replace type_crossing = 1 if record_id==24 
+	replace type_crossing = 1 if record_id==25 
+	replace type_crossing = 1 if record_id==26 
+	replace type_crossing = 1 if record_id==27 
+	replace type_crossing = 1 if record_id==31 
+	replace type_crossing = 1 if record_id==34 
+	replace type_crossing = 1 if record_id==35 
+	replace type_crossing = 1 if record_id==40 
+	replace type_crossing = 1 if record_id==41 
+	replace type_crossing = 1 if record_id==42 
+	replace type_crossing = 1 if record_id==43 
+	replace type_crossing = 1 if record_id==45 
+	replace type_crossing = 1 if record_id==46 
+	replace type_crossing = 1 if record_id==47 
+	replace type_crossing = 1 if record_id==48 
+	replace type_crossing = 1 if record_id==49 
+	replace type_crossing = 1 if record_id==50 
+	replace type_crossing = 1 if record_id==51 
+	replace type_crossing = 1 if record_id==52 
+	replace type_crossing = 1 if record_id==53 
+	replace type_crossing = 1 if record_id==55 
+	replace type_crossing = 1 if record_id==56 
+	replace type_crossing = 1 if record_id==60
+
+	replace type_crossing =2 if type_segment==2
+	replace type_crossing =2 if type_segment==3
+
+	recode type_crossing (.=2)
+	label var type_crossing "Crossing type"
+	label define type_crossing 1"Residenital" 2"Commercial"
+	label value type_crossing type_crossing
+
+	
+	order record_id redcap_repeat_instrument redcap_repeat_instance routeid auditorid type side crossstreet_s crossstreet_e starttime endtime mapsadmin_variables_complete land1 land2___1 land2___2 land2___3 land2___4 land2___5 land3a land3b land3c land3d land3e land3f land3g land3h land3i land3j land3k land3l land3m land3n land3o land3p land3q land3r land3s land3t land3u land3v land3w land3x land3y land3z land4___1 land4___2 land4___3 land4___4 street1 street2a street2b___1 street2b___2 street2b___3 street3___1 street3___2 street3___3 street3a street3b street4 street5 street6___0 street6___1 street6___2 street6___3 street6___4 street7 street8 street8a street8b aesthetics1 aesthetics2 aesthetics3 aesthetics4 aesthetics5 aesthetics6 aesthetics7 maps_route_complete type_segment segment1 segment2 segment3a segment3b segment4___0 segment4___1 segment4___2 segment4___3 segment4___4 segment5 segment6 segment7 segment8 segment9a segment9b segment10 segment11 segment12 segment13 segment14 segment15 maps_segment_complete intesection1 intersection2 streetfrom streetto type_crossing crossings1 crossings2___1 crossings2___2 crossings2___3 crossings2___4 crossings3a crossings3b crossings4 crossings5___1 crossings5___2 crossings5___3 crossings5___4 crossings6 mapscrossings_complete 
 	set more off
 	describe
 
-<<<<<<< HEAD:MAPSaudit.do
-** DO-FILE SECTION 02 (cleaning the dataset) **
-=======
 ** DO-FILE SECTION 02- Data Cleaning
->>>>>>> eaae189d9c17b63752a24814a2631d56cd6fd042:MAPS_prep_001.do
 
 // Changing the time variables form string to numeric //
 
@@ -400,21 +417,6 @@ set linesize 200
 
 	label var time_diff "Time difference (Start and End)Ó
 
-<<<<<<< HEAD:MAPSaudit.do
-
-
-
-
-
-
-
-
-
-
-
-
-
-=======
 *Note: Including the label maps route to the variable redcap_repeat_instrument
 
 replace redcap_repeat_instrument = "maps_route" if redcap_repeat_instrument==""
@@ -523,7 +525,6 @@ rename crossings6 C1_11e
 
 label var time_start "Route Start Time"
 label var time_end "Route End Time"
->>>>>>> eaae189d9c17b63752a24814a2631d56cd6fd042:MAPS_prep_001.do
 
 
 save "MAPS_cleaned", replace
