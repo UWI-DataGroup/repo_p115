@@ -18,6 +18,14 @@ macro drop _all
 set more 1
 set linesize 200
 
+/*	IMPORTANT: 
+	The following STATA do files should be excuted prior the excuting this 
+	do files
+	1) MAPS_prep_001.do
+	2) MAPS_prep_002.do
+*/
+
+
 use "MAPS Recoding Scoring", clear
 
 ********************************************************************************
