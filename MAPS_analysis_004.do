@@ -20,6 +20,12 @@ macro drop _all
 set more 1
 set linesize 200
 
+/*	IMPORTANT: 
+	The following STATA do files should be excuted prior the excuting this 
+	do file
+	1) MAPS_prep_003.do	
+*/
+
 
 use "MAPS Overall", clear
 
