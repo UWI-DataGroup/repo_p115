@@ -23,7 +23,9 @@ set linesize 200
 /*	IMPORTANT: 
 	The following STATA do files should be excuted prior the excuting this 
 	do file
-	1) MAPS_prep_003.do	
+	1) MAPS_prep_001.do
+	2) MAPS_prep_002.do
+	3) MAPS_prep_003.do
 */
 
 
